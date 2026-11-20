@@ -145,7 +145,7 @@ export default function DataCard({
               <>
                 {showNowPlaying && (
                   <div className="now-playing-section">
-                    <div className="card-subtitle">Currently Listening To</div>
+
                     <DataCardCell
                       item={nowPlaying}
                       imageDataMap={imageDataMap}
