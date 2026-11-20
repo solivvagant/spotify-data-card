@@ -66,46 +66,19 @@ export default class User {
   }
 
   static async getNowPlaying(
-    accessToken: string,
-    hideExplicit: boolean
-  ): Promise<Track | null> {
-    // fetch currently playing track
-    let response;
-    try {
-      response = await axios.get<CurrentlyPlayingResponseBody>(
-        NOW_PLAYING_ENDPOINT,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        }
-      );
-    } catch (error) {
-      throw (error as AxiosError).message;
-    }
-
-    // check if a track can be shown
-    const data = response.data;
-    if (
-      !data ||
-      !data.item ||
-      !data.is_playing ||
-      (hideExplicit && data.item.explicit)
-    ) {
-      return null;
-    }
-
-    // resolve with track
-    const trackData = data.item;
-    return {
-      title: trackData.name,
-      artist: trackData.artists.map((_artist) => _artist.name).join(', '),
-      albumTitle: trackData.album.name,
-      albumImageUrl: trackData.album.images[2].url,
-      explicit: trackData.explicit,
-      url: trackData.external_urls.spotify
-    };
-  }
+  accessToken: string,
+  hideExplicit: boolean
+): Promise<Track | null> {
+  return {
+    title: 'moonphase waltz',
+    artist: 'hoyofair, c!nah',
+    albumTitle: 'moonphase waltz',
+    albumImageUrl:
+      'https://raw.githubusercontent.com/solivvagant/spotify-data-card/master/src/public/b9796095-6fc4-4edf-895e-7eb002e94007.jpg',
+    explicit: false,
+    url: 'https://open.spotify.com/search/Moonphase%20Waltz'
+  };
+}
 
   static async getRecentlyPlayed(
     accessToken: string,
